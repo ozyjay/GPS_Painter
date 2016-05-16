@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="300dp"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/canvas_size_str" />
+
+        <TextView
+            android:id="@+id/canvas_size"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <SeekBar
+            android:id="@+id/canvas_size_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/location_accuracy_str" />
+
+        <TextView
+            android:id="@+id/location_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <SeekBar
+            android:id="@+id/location_accuracy_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/brush_scale_str" />
+
+        <TextView
+            android:id="@+id/brush_scale"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <SeekBar
+            android:id="@+id/brush_scale_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>

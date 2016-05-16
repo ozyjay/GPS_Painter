@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GPS Painter</string>
+    <string name="settings">Customize drawing</string>
+    <string name="color">Pick a color</string>
+    <string name="current_color_query">Current:</string>
+    <string name="clear">Clear drawing</string>
+    <string name="canvas_size_str">Canvas size:</string>
+    <string name="location_accuracy_str">Location accuracy:</string>
+    <string name="brush_scale_str">Brush scale:</string>
+</resources>

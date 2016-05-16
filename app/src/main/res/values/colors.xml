@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="light_gray">#d8d8d8</color>
+    <color name="dark_gray">#6e6e6e</color>
+    <color name="black">#000000</color>
+    <color name="pink">#f7819f</color>
+    <color name="red">#df013a</color>
+    <color name="light_purple">#f5a9e1</color>
+    <color name="purple">#ff00bf</color>
+    <color name="dark_purple">#8a0868</color>
+    <color name="light_purple2">#e2a9f3</color>
+    <color name="purple2">#cc2efa</color>
+    <color name="dark_purple2">#8904b1</color>
+    <color name="purple3">#8258fa</color>
+    <color name="blue">#4000ff</color>
+    <color name="dark_blue">#29088a</color>
+    <color name="green_blue">#58d3f7</color>
+    <color name="sea_water">#00bfff</color>
+    <color name="light_leaf">#a9f5f2</color>
+    <color name="leaf">#04b4ae</color>
+    <color name="dark_leaf">#0b615e</color>
+    <color name="army_green">#088a68</color>
+    <color name="fluro_green">#2efe64</color>
+    <color name="nice_green">#088a29</color>
+    <color name="paper">#f5f6ce</color>
+    <color name="light_yellow">#f4fa58</color>
+    <color name="yellow">#ffff00</color>
+    <color name="dirty_yellow">#5e610b</color>
+    <color name="brown">#5f4c0b</color>
+    <color name="orange">#ff8000</color>
+
+    <array name="colors">
+        <item>@color/white</item>
+        <item>@color/light_gray</item>
+        <item>@color/dark_gray</item>
+        <item>@color/black</item>
+        <item>@color/pink</item>
+        <item>@color/red</item>
+        <item>@color/light_purple</item>
+        <item>@color/light_purple2</item>
+        <item>@color/purple</item>
+        <item>@color/purple2</item>
+        <item>@color/purple3</item>
+        <item>@color/blue</item>
+        <item>@color/dark_blue</item>
+        <item>@color/green_blue</item>
+        <item>@color/sea_water</item>
+        <item>@color/light_leaf</item>
+        <item>@color/leaf</item>
+        <item>@color/dark_leaf</item>
+        <item>@color/army_green</item>
+        <item>@color/fluro_green</item>
+        <item>@color/nice_green</item>
+        <item>@color/paper</item>
+        <item>@color/light_yellow</item>
+        <item>@color/yellow</item>
+        <item>@color/dirty_yellow</item>
+        <item>@color/brown</item>
+        <item>@color/orange</item>
+    </array>
+
+</resources>

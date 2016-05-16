@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androidcompat="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/color"
+        android:icon="@drawable/ic_palette_24dp"
+        android:title="@string/color"
+        androidcompat:showAsAction="always" />
+
+    <item
+        android:id="@+id/save"
+        android:icon="@drawable/ic_save_24dp"
+        android:title="Save drawing"
+        androidcompat:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/clear"
+        android:icon="@drawable/ic_clear_24dp"
+        android:title="@string/clear"
+        androidcompat:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_applications_24dp"
+        android:title="@string/settings"
+        androidcompat:showAsAction="ifRoom" />
+
+</menu>
