@@ -71,6 +71,8 @@ public class SettingsChoices extends AppCompatDialogFragment {
                 if (!fromUser) return;
                 canvasSize = canvasSizeUtility.value(progress);
                 canvasSizeText.setText(String.format("%d", canvasSize));
+                if (listener == null) return;
+                listener.canvasSizeChanged(canvasSize);
             }
 
             @Override

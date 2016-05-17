@@ -13,12 +13,20 @@ public class Drawing {
         currentCount = 0;
     }
 
-    public synchronized void addPoint(Coordinate coordinate, int color) {
+    public synchronized void addPoint(Coordinate newCoordinate, int color) {
+        // prevent the same color from being added to the same point
+        if (currentCount > 0) {
+            Point mostRecentPoint = points.get(currentCount - 1);
+
+            if (mostRecentPoint.coordinate.equals(newCoordinate) && color == points.get(currentCount - 1).color)
+                return;
+        }
+
         if (currentCount < points.size()) {
             // remove beyond current
             points = points.subList(0, currentCount);
         }
-        points.add(new Point(coordinate, color));
+        points.add(new Point(newCoordinate, color));
         ++currentCount;
     }
 

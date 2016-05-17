@@ -9,9 +9,15 @@
         androidcompat:showAsAction="always" />
 
     <item
+        android:id="@+id/help"
+        android:icon="@drawable/ic_help_24dp"
+        android:title="@string/help"
+        androidcompat:showAsAction="always" />
+
+    <item
         android:id="@+id/save"
         android:icon="@drawable/ic_save_24dp"
-        android:title="Save drawing"
+        android:title="@string/save_drawing"
         androidcompat:showAsAction="ifRoom" />
 
     <item

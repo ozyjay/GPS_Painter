@@ -32,12 +32,14 @@ public class GPSPainterActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private ColorChoice colorChoice;
     private SettingsChoices settingsChoices;
+    private HelpDialog helpDialog;
 
-    private Animation blink, blinkSlow, shake, shakeBig;
+    private Animation blinkSlow, shake, shakeBig;
 
     public GPSPainterActivity() {
         colorChoice = new ColorChoice();
         settingsChoices = new SettingsChoices();
+        helpDialog = new HelpDialog();
         brush = new Brush();
         drawing = new Drawing();
     }
@@ -48,7 +50,6 @@ public class GPSPainterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // setup
-        blink = AnimationUtils.loadAnimation(this, R.anim.blink);
         blinkSlow = AnimationUtils.loadAnimation(this, R.anim.blink_slow);
         shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         shakeBig = AnimationUtils.loadAnimation(this, R.anim.shake_big);
@@ -76,6 +77,7 @@ public class GPSPainterActivity extends AppCompatActivity {
             @Override
             public void canvasSizeChanged(int value) {
                 drawingView.setSize(value);
+                drawingView.invalidate();
             }
 
             @Override
@@ -105,19 +107,20 @@ public class GPSPainterActivity extends AppCompatActivity {
             @Override
             public boolean onFling(MotionEvent startEvent, MotionEvent endEvent, float velocityX, float velocityY) {
                 boolean result = false;
-                if (Math.abs(velocityX) < 4000 && Math.abs(velocityY) > 4000 && startEvent.getY() < endEvent.getY()) {
+                if (Math.abs(velocityY) > 2000 && startEvent.getY() < endEvent.getY()) {
                     result = true;
                     if (drawing.redoPoint()) {
+                        drawingView.invalidate();
                         drawingView.startAnimation(shake);
                     }
 
-                } else if (Math.abs(velocityX) < 4000 && Math.abs(velocityY) > 4000 && startEvent.getY() > endEvent.getY()) {
+                } else if (Math.abs(velocityY) > 2000 && startEvent.getY() > endEvent.getY()) {
                     result = true;
                     if (drawing.undoPoint()) {
+                        drawingView.invalidate();
                         drawingView.startAnimation(shake);
                     }
                 }
-                drawingView.invalidate();
                 return result;
             }
 
@@ -125,13 +128,13 @@ public class GPSPainterActivity extends AppCompatActivity {
             public boolean onSingleTapConfirmed(MotionEvent e) {
                 drawing.addPoint(brush.getCursor(), prefs.getInt("color", R.color.white));
                 drawingView.invalidate();
-                drawingView.startAnimation(blink);
                 return true;
             }
 
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 brush.recalibrate();
+                drawingView.invalidate();
                 drawingView.startAnimation(blinkSlow);
                 return true;
             }
@@ -147,6 +150,7 @@ public class GPSPainterActivity extends AppCompatActivity {
     protected void onPause() {
         drawingStore.saveFrom(drawing);
         locationUtility.stop();
+        drawingView.enable(false);
         super.onPause();
     }
 
@@ -156,6 +160,7 @@ public class GPSPainterActivity extends AppCompatActivity {
         super.onResume();
         locationUtility.start();
         drawingStore.loadInto(drawing);
+        drawingView.enable(true);
     }
 
     @Override
@@ -184,6 +189,10 @@ public class GPSPainterActivity extends AppCompatActivity {
                 settingsChoices.show(getSupportFragmentManager(), "Change drawing settings");
                 break;
 
+            case R.id.help:
+                helpDialog.show(getSupportFragmentManager(), "Help using GPS Painter");
+                break;
+
             case R.id.color:
                 colorChoice.show(getSupportFragmentManager(), "Pick a color");
                 break;
@@ -191,7 +200,6 @@ public class GPSPainterActivity extends AppCompatActivity {
             case R.id.clear:
                 drawingView.startAnimation(shakeBig);
                 drawing.clear();
-                drawingView.invalidate();
                 break;
 
             case R.id.save:

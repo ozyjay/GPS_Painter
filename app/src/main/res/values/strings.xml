@@ -2,9 +2,21 @@
     <string name="app_name">GPS Painter</string>
     <string name="settings">Customize drawing</string>
     <string name="color">Pick a color</string>
-    <string name="current_color_query">Current:</string>
+    <string name="current_color_query">Current color:</string>
     <string name="clear">Clear drawing</string>
     <string name="canvas_size_str">Canvas size:</string>
     <string name="location_accuracy_str">Location accuracy:</string>
     <string name="brush_scale_str">Brush scale:</string>
+    <string name="save_drawing">Save drawing</string>
+    <string name="help">Help using GPS Painter</string>
+    <string name="basic_info">
+        You are in control of a flashing cursor.
+        Single tapping the screen colors the grid cell where the cursor is located.
+        Double tapping moves the cursor to the middle of the grid,
+        as you move around in the real-world the cursor follows you.
+        Swiping up quickly will undo your last change.
+        Swiping down quickly will redo your last change.
+        The menu contains functionality for saving to the image gallery, selecting the drawing color,
+        clearing the drawing, changing the grid size, and adjusting the sensitivity of the cursor tracking.
+    </string>
 </resources>

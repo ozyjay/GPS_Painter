@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -22,6 +23,7 @@ import java.util.Locale;
 
 public class DrawingView extends View {
 
+    Handler handler;
     private float cellWidth, cellHeight;
     private int rowCount, columnCount;
     private int[] cursor;
@@ -29,10 +31,22 @@ public class DrawingView extends View {
     private Paint cellOutline, cursorOutline, pointFill, background;
     private Brush brush;
     private Context context;
+    private boolean cursorVisible, running;
+    Runnable updater = new Runnable() {
+        @Override
+        public void run() {
+            if (running) {
+                updateCursor();
+                invalidate();
+                handler.postDelayed(updater, 1000);
+            }
+        }
+    };
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        handler = new Handler();
         rowCount = columnCount = 5;
         cursor = new int[]{columnCount / 2, rowCount / 2};
         setupPaints();
@@ -44,11 +58,17 @@ public class DrawingView extends View {
         this.brush = brush;
     }
 
+    public void enable(boolean value) {
+        running = value;
+        if (running) {
+            handler.post(updater);
+        }
+    }
+
     public void setSize(int size) {
         rowCount = columnCount = size;
         cellWidth = 1.0f * (getWidth() - 2 * getPaddingLeft()) / rowCount;
         cellHeight = 1.0f * (getHeight() - 2 * getPaddingTop()) / columnCount;
-        invalidate();
     }
 
     public void addImageToGallery() {
@@ -100,7 +120,7 @@ public class DrawingView extends View {
 
         drawCells(canvas);
         drawPoints(canvas);
-        drawCursor(canvas);
+        if (cursorVisible) drawCursor(canvas);
 
         canvas.restore();
     }
@@ -132,8 +152,6 @@ public class DrawingView extends View {
     }
 
     private void drawCursor(Canvas canvas) {
-        updateCursor();
-
         float cursorLeft = cursor[0] * cellWidth + getPaddingLeft();
         float cursorTop = cursor[1] * cellHeight + getPaddingTop();
         float cursorRight = cursorLeft + cellWidth;
@@ -146,6 +164,8 @@ public class DrawingView extends View {
         Coordinate coordinate = brush.getCursor();
         this.cursor[0] = coordinate.x + columnCount / 2;
         this.cursor[1] = coordinate.y + rowCount / 2;
-        invalidate();
+
+        // run the countdown state machine
+        cursorVisible = !cursorVisible;
     }
 }
